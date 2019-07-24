@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeedifyG19Applet"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:applets="clr-namespace:Logitech_LCD.Applets;assembly=Logitech-LCD"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <applets:BaseWPFApplet Name="Applet">
+        <Grid Background="#fafafa">
+            <lvc:CartesianChart Series="{Binding SeriesCollection}"  LegendLocation="Bottom">
+            <!--<lvc:CartesianChart.ChartLegend/>-->
+            <lvc:CartesianChart.AxisX>
+                    <lvc:Axis 
+                          Title=""
+                          ShowLabels="False"
+                          MaxValue="{Binding AxisMax}" 
+                          MinValue="{Binding AxisMin}"
+                          >
+                    </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Speed" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
     </Grid>
+        </applets:BaseWPFApplet>
 </Window>
+
+
+
